@@ -1,0 +1,6 @@
+var prev = $('#contents').html();
+$('#contents').html(prev + '<%= escape_javascript render(@users) %>');
+$('#next').html(
+  '<%= escape_javascript(link_to_next_page(@users, '', :remote => true, :id => "next_link").to_s) %>'
+);
+history.pushState(null, null, 'users?page=<%= @users.current_page %>');

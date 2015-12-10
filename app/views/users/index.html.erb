@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+
+<%= link_to 'New User', new_user_path %>
+
+<h1>ユーザ一覧</h1>
+<ul>
+  <div id="contents">
+    <%= render @users %>
+  </div>
+</ul>
+
+<br>
+
+<div id="next">
+  <%= link_to_next_page @users, '', remote: true, id: 'next_link' %>
+</div>
+
+<script>
+  $(window).scroll(function () {
+    console.log('ponint 1')
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+        console.log('ponint 2')
+        $('#next_link').trigger("click");
+    }
+  });
+</script>
